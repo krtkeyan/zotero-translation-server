@@ -4,3 +4,7 @@ config/dev.json
 config/local.json
 lambda_config*.env
 
+.serverless
+.github
+.DS_STORE
+yarn.lock

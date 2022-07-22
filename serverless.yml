@@ -1,0 +1,35 @@
+org: krtgigahertz
+app: zotero-translation
+service: zotero-translation
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  stage: prod
+  runtime: nodejs14.x
+  memorySize: 2048
+  timeout: 30
+  region: us-east-1
+  environment:
+    NODE_ENV: production
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Resource: "*"
+          Action:
+            - "logs:*"
+
+functions:
+  translation:   
+    handler: src/lambda.handler
+    events:
+      - http: ANY /
+      - http: 'ANY /{proxy+}'   
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-common-excludes
+
+package:
+  individually: true

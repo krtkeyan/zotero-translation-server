@@ -37,7 +37,7 @@ const WebEndpoint = require('./webEndpoint');
 const ExportEndpoint = require('./exportEndpoint');
 const ImportEndpoint = require('./importEndpoint');
 
-const app = module.exports = new Koa();
+const app = new Koa();
 app.use(cors);
 app.use(bodyParser({enableTypes: ['text', 'json']}));
 app.use(_.post('/web', WebEndpoint.handle.bind(WebEndpoint)));
